@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Grafico Plotly da Lambda</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Test Lambda</title>
 </head>
 <body>
-    <h1>Grafico interattivo</h1>
-    <div id="plot-container"></div>
+  <h1>Messaggio dalla Lambda</h1>
+  <div id="lambda-message">Caricamento...</div>
 
-    <script>
-        async function fetchGraph() {
-            // Endpoint API Gateway della tua Lambda
-            const response = await fetch("https://luwlzgp5zju5dep7gyc5xwxgem0ufgdt.lambda-url.eu-central-1.on.aws");
-            const data = await response.json();
-            
-            // Inserisco il div del grafico nella pagina
-            document.getElementById("plot-container").innerHTML = data.graph;
+  <script>
+    // Sostituisci con il tuo Function URL
+    const lambdaUrl = "https://77z4o2i4egfg4qm7yga67j7klu0foqej.lambda-url.eu-central-1.on.aws/";
+
+    // Chiamata GET semplice
+    fetch(lambdaUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Errore nella chiamata Lambda");
         }
-
-        fetchGraph();
-    </script>
+        return response.text(); // o .json() se Lambda restituisce JSON
+      })
+      .then(data => {
+        document.getElementById("lambda-message").innerText = data;
+      })
+      .catch(error => {
+        document.getElementById("lambda-message").innerText = error;
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
