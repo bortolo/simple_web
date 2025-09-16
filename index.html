@@ -6,25 +6,24 @@
 </head>
 <body>
   <h1>Messaggio dalla Lambda</h1>
-  <div id="lambda-message">...Caricamento...</div>
+  <div id="lambda-message">Caricamento...</div>
 
   <script>
-    // Sostituisci con il tuo Function URL
-    const lambdaUrl = "https://77z4o2i4egfg4qm7yga67j7klu0foqej.lambda-url.eu-central-1.on.aws/";
+    // Metti qui il tuo Function URL
+    const lambdaUrl = "https://abcd1234.lambda-url.eu-central-1.on.aws/";
 
-    // Chiamata GET semplice
     fetch(lambdaUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error("Errore nella chiamata Lambda");
         }
-        return response.text(); // o .json() se Lambda restituisce JSON
+        return response.text(); // perché la Lambda restituisce text/plain
       })
       .then(data => {
         document.getElementById("lambda-message").innerText = data;
       })
       .catch(error => {
-        document.getElementById("lambda-message").innerText = error;
+        document.getElementById("lambda-message").innerText = "Errore: " + error;
         console.error(error);
       });
   </script>
