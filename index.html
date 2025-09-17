@@ -3,29 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>Test Lambda</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
   <h1>Messaggio dalla Lambda</h1>
   <div id="lambda-message">Caricamento...</div>
-
+  <h2>Grafico Iris da Lambda</h2>
+    <div id="grafico" style="width:600px;height:400px;"></div>
   <script>
     // Metti qui il tuo Function URL
-    const lambdaUrl = "https://ty2ronrflwcbd5l3qn6oclqm4i0qjxnd.lambda-url.eu-central-1.on.aws/title";
+    const lambdaUrl = "https://le22epnvzto7vl5vou436noeli0kalkz.lambda-url.eu-central-1.on.aws";
 
-    fetch(lambdaUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Errore nella chiamata Lambda");
-        }
-        return response.text(); // perché la Lambda restituisce text/plain
-      })
-      .then(data => {
-        document.getElementById("lambda-message").innerText = data;
-      })
-      .catch(error => {
-        document.getElementById("lambda-message").innerText = "Errore: " + error;
-        console.error(error);
-      });
+    // fetch(lambdaUrl+"/title")
+    //   .then(response => {
+    //     if (!response.ok) {
+    //       throw new Error("Errore nella chiamata Lambda");
+    //     }
+    //     return response.text(); // perché la Lambda restituisce text/plain
+    //   })
+    //   .then(data => {
+    //     document.getElementById("lambda-message").innerText = data;
+    //   })
+    //   .catch(error => {
+    //     document.getElementById("lambda-message").innerText = "Errore: " + error;
+    //     console.error(error);
+    //   });
+
+    // fetch(lambdaUrl+"/graph")
+    //   .then(response => response.text())
+    //   .then(html => {
+    //       document.getElementById("grafico").innerHTML = html;
+    //   })
+    //   .catch(err => console.error(err));
+
+    fetch(lambdaUrl+"/graph")
+        .then(r => r.json())
+        .then(figData => {
+          Plotly.newPlot("grafico", figData.data, figData.layout);
+        })
+        .catch(err => console.error("Errore:", err));
+
+    // async function loadGraph() {
+    //     const response = await fetch(lambdaUrl+"/graph");
+    //     const html = await response.text();
+    //     document.getElementById("grafico").innerHTML = html;
+    //   }
+    //   loadGraph();
   </script>
 </body>
 </html>
