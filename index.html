@@ -3,52 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>Test Lambda</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-  <h1>Messaggio dalla Lambda</h1>
-  <div id="lambda-message">Caricamento...</div>
-  <h2>Grafico Iris da Lambda</h2>
-    <div id="grafico" style="width:600px;height:400px;"></div>
-  <script>
-    // Metti qui il tuo Function URL
-    const lambdaUrl = "https://le22epnvzto7vl5vou436noeli0kalkz.lambda-url.eu-central-1.on.aws";
+  <h1>Web page per plot di grafici</h1>
+  <h2>Messaggio dalla Lambda</h2>
+    <button id="btnAltro" type="button">
+      Verifica funzionamento Lambda
+    </button>
+    <div id="lambda-message">Verifica se Lambda sta funzionando...</div>
+  <h2>Grafici delle variabili</h2>
+      <h2>Inserisci i dati</h2>
 
-    // fetch(lambdaUrl+"/title")
-    //   .then(response => {
-    //     if (!response.ok) {
-    //       throw new Error("Errore nella chiamata Lambda");
-    //     }
-    //     return response.text(); // perché la Lambda restituisce text/plain
-    //   })
-    //   .then(data => {
-    //     document.getElementById("lambda-message").innerText = data;
-    //   })
-    //   .catch(error => {
-    //     document.getElementById("lambda-message").innerText = "Errore: " + error;
-    //     console.error(error);
-    //   });
+      <form id="dataForm">
+        <table>
+          <thead>
+            <tr>
+              <th>Anno</th>
+              <th>Variabile A</th>
+              <th>Variabile B</th>
+              <th>Variabile C</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Le righe saranno inserite dinamicamente con JS -->
+          </tbody>
+        </table>
 
-    // fetch(lambdaUrl+"/graph")
-    //   .then(response => response.text())
-    //   .then(html => {
-    //       document.getElementById("grafico").innerHTML = html;
-    //   })
-    //   .catch(err => console.error(err));
+        <button type="submit">
+          Invia dati
+        </button>
+      </form>
 
-    fetch(lambdaUrl+"/graph")
-        .then(r => r.json())
-        .then(figData => {
-          Plotly.newPlot("grafico", figData.data, figData.layout);
-        })
-        .catch(err => console.error("Errore:", err));
-
-    // async function loadGraph() {
-    //     const response = await fetch(lambdaUrl+"/graph");
-    //     const html = await response.text();
-    //     document.getElementById("grafico").innerHTML = html;
-    //   }
-    //   loadGraph();
-  </script>
+      <p id="result"></p>
+      <div class="grafici-container" style="display: flex; gap: 20px;">
+        <div id="grafico_1" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
+        <div id="grafico_2" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
+        <div id="grafico_3" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
+      </div>
+  <script src="https://cdn.plot.ly/plotly-2.31.1.min.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
