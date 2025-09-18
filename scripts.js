@@ -63,7 +63,9 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
     Plotly.newPlot("grafico_1", figData.figA.data, figData.figA.layout);
     Plotly.newPlot("grafico_2", figData.figB.data, figData.figB.layout);
     Plotly.newPlot("grafico_3", figData.figC.data, figData.figC.layout);
-
+    Plotly.newPlot("grafico_4", figData.figD.data, figData.figD.layout);
+    document.getElementById("npv").innerText = "NPV: " + figData.npv
+    document.getElementById("tv").innerText = "TV: " + figData.tv
   } catch (err) {
     document.getElementById("result").innerText = "❌ Errore: " + err.message;
   }
