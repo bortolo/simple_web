@@ -13,8 +13,8 @@
  
 // Chiamate API al backend ========================
 
- // Metti qui il tuo Function URL
-    const lambdaUrl = "https://55pmdyx73ijgwksx7o6mchyipm0yigsz.lambda-url.eu-central-1.on.aws";
+ // Metti qui il tuo Function URL (si potrebbe parametrizzare tra i vari stage e locale vs su aws)
+    const lambdaUrl = "https://ajx89qr9d6.execute-api.eu-central-1.amazonaws.com"+"/prod"; // VPC endpoint (attenzione che per renderlo ID indipendent bisogna creare cetificato custom)
     
 // Bottone per verificare se API status OK
 document.getElementById("btnAltro").addEventListener("click", async () => {
