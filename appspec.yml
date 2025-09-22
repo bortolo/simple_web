@@ -9,3 +9,11 @@ hooks:
     - location: scripts/clean.sh
       timeout: 60
       runas: root
+
+AfterInstall:
+  # Copia il proxy dalla repo
+  - mkdir -p /home/ec2-user/proxy
+  - cp -r /var/www/html/proxy/* /home/ec2-user/proxy/
+  - cd /home/ec2-user/proxy
+  # Avvia il proxy come background process
+  - nohup node server.js > proxy.log 2>&1 &
