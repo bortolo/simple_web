@@ -1,52 +1,68 @@
 // Tramite SDK ottengo ID del gateway rest
 
-const { APIGatewayClient, GetRestApisCommand } = require("@aws-sdk/client-apigateway");
+const AWS = require("aws-sdk");
+const express = require("express");
+const fetch = require("node-fetch"); // assicurati versione 2.x
 
+// Configura regione AWS
+AWS.config.update({ region: "eu-central-1" });
+
+// Client API Gateway (REST API v1)
+const apigateway = new AWS.APIGateway();
+
+// Funzione per ottenere ID REST API per nome
 async function getRestApiId(apiName) {
-  const client = new APIGatewayClient({ region: "eu-central-1" });
-  const command = new GetRestApisCommand({});
-  const response = await client.send(command);
-
+  const response = await apigateway.getRestApis().promise();
   const api = response.items.find(item => item.name === apiName);
-  if (!api) throw new Error(`API con nome "${apiName}" non trovata`);
 
+  if (!api) throw new Error(`API con nome "${apiName}" non trovata`);
   return api.id;
 }
 
-// Funzione per ottenere l'URL completo della REST API
+// Funzione per costruire URL completo
 async function getLambdaUrl() {
   const apiId = await getRestApiId("private_api");
   const stage = "prod";
   const region = "eu-central-1";
-
-  // Costruisci dinamicamente la URL
   return `https://${apiId}.execute-api.${region}.amazonaws.com/${stage}`;
 }
 
-// Uso della URL nelle altre funzioni
+// Avvio proxy Express
 (async () => {
   try {
     const lambdaUrl = await getLambdaUrl();
     console.log("Lambda URL:", lambdaUrl);
 
-    const express = require("express");
-    const fetch = require("node-fetch");
     const app = express();
 
+    // Middleware CORS (utile per chiamate browser)
+    app.use((req, res, next) => {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
+
+    // Proxy tutte le chiamate /api/* verso la REST API
     app.use("/api", async (req, res) => {
       try {
-        const path = req.url;
+        const path = req.url.replace(/^\/api/, ""); // rimuove /api dal path
         const apiUrl = lambdaUrl + path;
+
+        console.log(`${req.method} ${req.url} -> ${apiUrl}`);
+
+        // Copia headers tranne host
+        const { host, ...forwardHeaders } = req.headers;
 
         const apiResponse = await fetch(apiUrl, {
           method: req.method,
-          headers: req.headers
+          headers: forwardHeaders
         });
 
         const data = await apiResponse.json();
         res.status(apiResponse.status).json(data);
 
       } catch (err) {
+        console.error(err);
         res.status(500).json({ error: err.message });
       }
     });
@@ -54,7 +70,7 @@ async function getLambdaUrl() {
     app.listen(3000, () => console.log("Proxy server running on port 3000"));
 
   } catch (err) {
-    console.error(err);
+    console.error("Errore inizializzazione proxy:", err);
   }
 })();
 
