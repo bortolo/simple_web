@@ -11,11 +11,6 @@ hooks:
       runas: root
 
   AfterInstall:
-    # Copia il proxy dalla repo
-    - mkdir -p /home/ec2-user/proxy
-    - sudo cp -r /var/www/html/proxy/* /home/ec2-user/proxy/
-    - sudo chown -R ec2-user:ec2-user /home/ec2-user/proxy
-    - chmod -R 755 /home/ec2-user/proxy
-    - cd /home/ec2-user/proxy
-    # Avvia il proxy come background process
-    - nohup node server.js > proxy.log 2>&1 &
+    - location: scripts/start_proxy.sh
+      timeout: 60
+      runas: ec2-user
