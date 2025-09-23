@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName {{EC2_PUBLIC_IP}}
+
+    # Proxy tutte le richieste /api verso Node.js
+    ProxyPreserveHost On
+    ProxyPass /api http://127.0.0.1:3000/api
+    ProxyPassReverse /api http://127.0.0.1:3000/api
+
+    # (Opzionale) per log più dettagliati
+    ErrorLog /var/log/httpd/proxy_error.log
+    CustomLog /var/log/httpd/proxy_access.log combined
+</VirtualHost>
