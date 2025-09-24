@@ -8,10 +8,10 @@
 <body>
   <h1>Web page per plot di grafici</h1>
   <h2>Messaggio dalla Lambda</h2>
-    <button id="btnAltro" type="button">
-      Verifica funzionamento Lambda
-    </button>
+  <div class="lambda-row">
+    <button id="btnAltro" type="button">Verifica funzionamento Lambda</button>
     <div id="lambda-message">Verifica se Lambda sta funzionando...</div>
+  </div>
 
     <h2>Inserisci i dati</h2>
     <form id="dataForm">
@@ -63,7 +63,11 @@
               </tr>
             </tbody>
           </table>
-              <!-- Bottoni sotto la seconda tabella -->
+
+          <!-- Divider -->
+          <hr class="divider">
+
+          <!-- Bottoni sotto la seconda tabella -->
           <div class="button-group">
             <button type="button">Salva</button>
             <button type="button">Carica</button>

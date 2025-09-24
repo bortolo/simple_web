@@ -20,17 +20,9 @@ h2 {
 
 /* Riga per test status su lambda */
 .lambda-row {
-  display: flex;
-  align-items: center;        /* allinea verticalmente bottone e testo */
-  gap: 15px;                  /* spazio tra bottone e testo */
-}
-
-.lambda-row button {
-  flex-shrink: 0;             /* impedisce al bottone di ridursi */
-}
-
-.lambda-row #lambda-message {
-  flex-grow: 1;               /* il testo occupa lo spazio rimanente */
+  display: flex;           /* attiva Flexbox */
+  align-items: center;     /* allinea verticalmente bottone e testo */
+  gap: 15px;               /* spazio tra bottone e testo */
 }
 
 /* Per dividere div verticalmente */
@@ -46,6 +38,7 @@ table.form-table {
   border-collapse: collapse;
   width: 100%;
   table-layout: fixed; /* forza allineamento colonne */
+  margin-bottom: 20px; /* spazio sotto la tabella */
 }
 
 table.form-table th,
@@ -64,6 +57,8 @@ table.form-table input {
   box-sizing: border-box; /* evita che l’input esca dalla cella */
   padding: 4px;
 }
+
+/* Bottoni */
 
 .button-group {
   display: flex;   /* allinea i bottoni in fila */
