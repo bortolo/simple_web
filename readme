@@ -28,3 +28,6 @@ PROB&DET (ipotizzando backend attivo e funzionante)
 5) Da browser provare il bottone «Verifica funzionamento Lambda» (attivare su Ec2 la vista log del proxy e del reverse proxy)
         tail -f /proxy.log
         sudo tail -f /var/log/httpd/proxy_access.log
+
+6) Per vedere i log degli script legati al deployment
+        tail -f /opt/codedeploy-agent/deployment-root/<ID-code-deploy>/<ID-deploy>/logs/scripts.log

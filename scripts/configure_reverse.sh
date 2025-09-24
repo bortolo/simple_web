@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "=== ⚙️ Configurazione reverse proxy Apache ==="
 # Path template nel repo
-TEMPLATE="/home/ec2-user/reverse_proxy/proxy.conf.template"
+TEMPLATE="/var/www/html/reverse_proxy/proxy.conf.template"
 DEST="/etc/httpd/conf.d/proxy.conf"
 # Recupera IP pubblico della EC2
 TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")

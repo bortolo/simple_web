@@ -3,12 +3,12 @@ os: linux
 files:
   - source: /webserver
     destination: /var/www/html
+  - source: /reverse_proxy
+    destination: /var/www/html/reverse_proxy
   - source: /scripts
     destination: /home/ec2-user/scripts
   - source: /proxy
     destination: /home/ec2-user/proxy
-  - source: /reverse_proxy
-    destination: /home/ec2-user/reverse_proxy
 
 hooks:
   BeforeInstall:
