@@ -11,16 +11,18 @@
       Verifica funzionamento Lambda
     </button>
     <div id="lambda-message">Verifica se Lambda sta funzionando...</div>
-  <h2>Grafici delle variabili</h2>
-      <h2>Inserisci i dati</h2>
-      <form id="dataForm">
-        <table>
+
+    <h2>Inserisci i dati</h2>
+    <form id="dataForm">
+      <div style="display: flex; gap: 2rem;">
+        <!-- Prima tabella -->
+        <table border="1">
           <thead>
             <tr>
-              <th>Anno</th>
-              <th>Variabile A</th>
-              <th>Variabile B</th>
-              <th>Variabile C</th>
+              <th>Year</th>
+              <th>Revenue</th>
+              <th>EBITDA [% of revenue]</th>
+              <th>Capex</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -28,13 +30,8 @@
           </tbody>
         </table>
 
-        <button type="submit">
-          Invia dati
-        </button>
-      </form>
-      <h2>Inserisci i dati</h2>
-      <form id="paramForm">
-        <table>
+        <!-- Seconda tabella -->
+        <table border="1">
           <thead>
             <tr>
               <th>WACC</th>
@@ -42,15 +39,21 @@
             </tr>
           </thead>
           <tbody id="param-table-body">
-            <td class="border border-gray-300 p-2"><input type="number" name="wacc" class="w-full border rounded p-1"></td>
-            <td class="border border-gray-300 p-2"><input type="number" name="pgr" class="w-full border rounded p-1"></td>
+            <tr>
+              <td><input type="number" name="wacc" step="0.01" class="w-full border rounded p-1"></td>
+              <td><input type="number" name="pgr" step="0.01" class="w-full border rounded p-1"></td>
+            </tr>
           </tbody>
         </table>
+      </div>
 
-        <button type="submit_param">
-          Invia parametri
-        </button>
-      </form>
+      <!-- Unico bottone per inviare -->
+      <div style="margin-top: 1rem;">
+        <button type="submit">Invia dati e parametri</button>
+      </div>
+    </form>
+
+  <h2>Grafici delle variabili</h2>
       <p id="result"></p>
       <div class="grafici-container" style="display: flex; gap: 20px;">
         <div id="grafico_1" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
@@ -64,10 +67,13 @@
           <p id="tv"></p>
         </div>
       </div>
+
+  <!-- Script per fare render dei grafici plotly restituiti da API -->
   <script src="https://cdn.plot.ly/plotly-2.31.1.min.js"></script>
   <!-- Script per la logica API -->
   <script src="js/api.js"></script>
   <!-- Script per la logica UI -->
   <script src="js/ui.js"></script>
+
 </body>
 </html>
