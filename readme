@@ -16,9 +16,9 @@ PROB&DET (ipotizzando backend attivo e funzionante)
         curl https://<rest-api-id>.execute-api.eu-central-1.amazonaws.com/prod/status
 
         curl -X POST \
-            https://q2i79vf48c.execute-api.eu-central-1.amazonaws.com/prod/graph \
+            https://e77z5zp8mj.execute-api.eu-central-1.amazonaws.com/prod/graph \
             -H "Content-Type: application/json" \
-            -d '{"varA_1":4,"varA_2":4,"varA_3":4,"varA_4":4,"varA_5":4,"varB_1":1,"varB_2":1,"varB_3":1,"varB_4":1,"varB_5":1,"varC_1":1,"varC_2":1,"varC_3":1,"varC_4":1,"varC_5":1}'
+            -d '{"rev_1":4,"rev_2":4,"rev_3":4,"rev_4":4,"rev_5":4,"ebitda_1":1,"ebitda_2":1,"ebitda_3":1,"ebitda_4":1,"ebitda_5":1,"cpx_1":1,"cpx_2":1,"cpx_3":1,"cpx_4":1,"cpx_5":1, "wacc":0.2, "pgr":0.01, "cf_adv": 0}'
 
 3) Da Browser verificare se è stato fatto il deploy aggiornato della versione front-end (in caso contrario fare un push oppure forzare un release change da pannello code pipeline)
 
