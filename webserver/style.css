@@ -33,6 +33,14 @@ h2 {
   flex-grow: 1;               /* il testo occupa lo spazio rimanente */
 }
 
+/* Per dividere div verticalmente */
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #ccc; /* grigio chiaro */
+  margin: 20px 0;         /* spazio sopra e sotto */
+}
+
 /* Nota: ho aggiunto la classe form-table così lo stile vale solo per queste tabelle, e non per tutte quelle della pagina. */
 table.form-table {
   border-collapse: collapse;
