@@ -69,3 +69,49 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
   }
 });
 
+// Bottone per salvare lo scenario
+document.getElementById("dataForm").addEventListener("save", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  // Controllo se ci sono campi vuoti
+  let empty = false;
+  formData.forEach((value, key) => {
+    if (value.trim() === "") {
+      empty = true;
+    }
+  });
+
+  if (empty) {
+    alert("Per favore, compila tutti i campi del form prima di inviare.");
+    return; // esce dalla funzione, non fa fetch
+  }
+
+  const data = {};
+  formData.forEach((value, key) => {
+    data[key] = Number(value); // converto in numero
+  });
+
+  try {
+
+    const response = await fetch("/api/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error("Errore nella richiesta");
+    }
+
+    // assumiamo che la Lambda risponda in formato { data: [...], layout: {...} }
+    const result = await response.json();
+
+    // mostro anche un messaggio testuale
+    document.getElementById("result").innerText = "✅ Risultato save: " + JSON.stringify(result.message);
+
+  } catch (err) {
+    document.getElementById("result").innerText = "❌ Errore: " + err.message;
+  }
+});
