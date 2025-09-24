@@ -1,5 +1,30 @@
 Prerequisiti della EC2 per installare questo front-end
 1) usare Amazon Linux 2023 kernel-6.1 AMI "ami-0444794b421ec32e4" 
 1) installare CodeDeploy Agent
-2) installare Apache (testato su versione XX)
-3) installare nodejs (testato con versione 18)
+2) installare Apache (testato su versione Apache/2.4.65 Amazon Linux)
+3) installare nodejs (testato con versione v18.20.8)
+
+TODO - configurazione per run locale in fase di test
+
+PROB&DET (ipotizzando backend attivo e funzionante)
+1) Da PC fare ssh su ec2 server per verificare che AWS risolva URL REST api su IP VPC endpoint
+        ssh ec2-user@<public-ip-ec2>
+        dig <rest-api-id>.execute-api.eu-central-1.amazonaws.com
+
+2) Da PC fare ssh su ec2 server per provare connessione REST api tramite VPC endpoint (usare stage e path)
+        ssh ec2-user@<public-ip-ec2>
+        curl https://<rest-api-id>.execute-api.eu-central-1.amazonaws.com/prod/status
+
+3) Da Browser verificare se è stato fatto il deploy aggiornato della versione front-end (in caso contrario fare un push oppure forzare un release change da pannello code pipeline)
+
+4) Da PC fare ssh su ec2 e verificare che server apache e processo node (proxy) siano attivi e siano in grado di chiamare tramite proxy API
+        ps aux | grep node
+            ec2-user   28162  3.4  5.9 616952 57424 pts/0    Sl   08:14   0:00 node proxy.js
+        ss -tulnp | grep 3000
+            tcp   LISTEN 0      511                                 *:3000            *:*    users:(("node",pid=28162,fd=18))
+        curl http://localhost:3000/prod/status
+            {"message":"Service is operational"}
+
+5) Da browser provare il bottone «Verifica funzionamento Lambda» (attivare su Ec2 la vista log del proxy e del reverse proxy)
+        tail -f /proxy.log
+        sudo tail -f /var/log/httpd/proxy_access.log
