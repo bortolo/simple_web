@@ -34,14 +34,14 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
     alert("Per favore, compila tutti i campi del form prima di inviare.");
     return; // esce dalla funzione, non fa fetch
   }
-
+console.log(action)
   const data = {};
   formData.forEach((value, key) => {
     if (key !== "action") data[key] = value; // escludo "action" dai dati
   });
 
   try {
-
+console.log(action)
         if (action === "save") {
       // chiamata API per save
       const response = await fetch("/api/save", {
