@@ -20,6 +20,7 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
   e.preventDefault();
 
   const formData = new FormData(e.target);
+  console.log(formData)
   const action = formData.get("action"); // Legge quale bottone è stato cliccato
 
   // Controllo se ci sono campi vuoti
