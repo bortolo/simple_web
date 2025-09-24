@@ -79,14 +79,20 @@
 
   <h2>Grafici e risultati</h2>
       <p id="result"></p>
-      <div class="grafici-container" style="display: flex; gap: 20px;">
-        <div id="grafico_1" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
-        <div id="grafico_2" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
-        <div id="grafico_3" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
-        <div id="grafico_4" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
-        <div style="width: 300px; height: 400px;">
-          <p id="npv"></p>
-          <p id="tv"></p>
+      <div class="grafici-container">
+        <div id="grafico_1" class="chart-box"></div>
+        <div id="grafico_2" class="chart-box"></div>
+        <div id="grafico_3" class="chart-box"></div>
+        <div id="grafico_4" class="chart-box"></div>
+        <div class="npv-tv-container">
+          <div id="npv-box" class="value-box">
+            <p>Net Present Value (NPV)</p>
+            <p id="npv"></p>
+          </div>
+          <div id="tv-box" class="value-box">
+            <p>Terminal Value (TV)</p>
+            <p id="tv"></p>
+          </div>
         </div>
       </div>
 

@@ -62,8 +62,8 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
     Plotly.newPlot("grafico_2", figData.figB.data, figData.figB.layout);
     Plotly.newPlot("grafico_3", figData.figC.data, figData.figC.layout);
     Plotly.newPlot("grafico_4", figData.figD.data, figData.figD.layout);
-    document.getElementById("npv").innerText = "NPV: " + figData.npv
-    document.getElementById("tv").innerText = "TV: " + figData.tv
+    document.getElementById("npv").innerText = "Net Present Value (NPV): " + Number(figData.npv).toFixed(2);
+    document.getElementById("tv").innerText = "Terminal Value (TV): " + Number(figData.tv).toFixed(2);
   } catch (err) {
     document.getElementById("result").innerText = "❌ Errore: " + err.message;
   }
