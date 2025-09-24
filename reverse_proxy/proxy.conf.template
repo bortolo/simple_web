@@ -1,3 +1,4 @@
+# Configurazione Apache reverse proxy per mappare i servizi sul giusto indirizzo alla porta 3000 (porta del proxy server)
 <VirtualHost *:80>
     ServerName {{EC2_PUBLIC_IP}}
 

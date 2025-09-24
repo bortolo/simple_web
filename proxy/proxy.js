@@ -1,5 +1,9 @@
-// Tramite SDK ottengo ID del gateway rest
+// RUOLO PROXY
+// Processo Node.js lanciato su EC2 utilizzato come proxy per far fare le chiamate al API gw REST alla EC2
+// e non al browser client (non sarebbe riconosciuto dal dominio di AWS)
+// Il processo serve anche a definire dinamicamente URL API GW rest.
 
+// Tramite SDK ottengo ID del gateway rest
 const AWS = require("aws-sdk");
 const express = require("express");
 const fetch = require("node-fetch"); // assicurati versione 2.x

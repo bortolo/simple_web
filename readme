@@ -1,2 +1,5 @@
-# Dentro la cartella che vuoi servire
-python3 -m http.server 8000
+Prerequisiti della EC2 per installare questo front-end
+1) usare Amazon Linux 2023 kernel-6.1 AMI "ami-0444794b421ec32e4" 
+1) installare CodeDeploy Agent
+2) installare Apache (testato su versione XX)
+3) installare nodejs (testato con versione 18)

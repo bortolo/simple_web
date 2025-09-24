@@ -1,8 +1,14 @@
 version: 0.0
 os: linux
 files:
-  - source: /
+  - source: /webserver
     destination: /var/www/html
+  - source: /scripts
+    destination: /home/ec2-user/scripts
+  - source: /proxy
+    destination: /home/ec2-user/proxy
+  - source: /reverse_proxy
+    destination: /home/ec2-user/reverse_proxy
 
 hooks:
   BeforeInstall:
@@ -14,3 +20,6 @@ hooks:
     - location: scripts/start_proxy.sh
       timeout: 60
       runas: ec2-user
+    - location: scripts/configure_reverse.sh
+      timeout: 60
+      runas: root
