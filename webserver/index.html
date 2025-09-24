@@ -13,7 +13,6 @@
     <div id="lambda-message">Verifica se Lambda sta funzionando...</div>
   <h2>Grafici delle variabili</h2>
       <h2>Inserisci i dati</h2>
-
       <form id="dataForm">
         <table>
           <thead>
@@ -33,7 +32,25 @@
           Invia dati
         </button>
       </form>
+      <h2>Inserisci i dati</h2>
+      <form id="paramForm">
+        <table>
+          <thead>
+            <tr>
+              <th>WACC</th>
+              <th>PGR</th>
+            </tr>
+          </thead>
+          <tbody id="param-table-body">
+            <td class="border border-gray-300 p-2"><input type="number" name="wacc" class="w-full border rounded p-1"></td>
+            <td class="border border-gray-300 p-2"><input type="number" name="pgr" class="w-full border rounded p-1"></td>
+          </tbody>
+        </table>
 
+        <button type="submit_param">
+          Invia parametri
+        </button>
+      </form>
       <p id="result"></p>
       <div class="grafici-container" style="display: flex; gap: 20px;">
         <div id="grafico_1" style="width: 300px; height: 400px; border: 1px solid #ccc;"></div>
