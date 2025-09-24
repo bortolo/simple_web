@@ -18,6 +18,21 @@ h2 {
   margin-bottom: 20px;            /* distanza dal contenuto sottostante */
 }
 
+/* Riga per test status su lambda */
+.lambda-row {
+  display: flex;
+  align-items: center;        /* allinea verticalmente bottone e testo */
+  gap: 15px;                  /* spazio tra bottone e testo */
+}
+
+.lambda-row button {
+  flex-shrink: 0;             /* impedisce al bottone di ridursi */
+}
+
+.lambda-row #lambda-message {
+  flex-grow: 1;               /* il testo occupa lo spazio rimanente */
+}
+
 /* Nota: ho aggiunto la classe form-table così lo stile vale solo per queste tabelle, e non per tutte quelle della pagina. */
 table.form-table {
   border-collapse: collapse;
