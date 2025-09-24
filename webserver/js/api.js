@@ -26,6 +26,7 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
   });
 
   try {
+
     const response = await fetch("/api/graph", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

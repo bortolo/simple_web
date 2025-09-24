@@ -47,23 +47,47 @@ async function getLambdaUrl() {
     });
 
     // Proxy tutte le chiamate /api/* verso la REST API
-    app.use("/api", async (req, res) => {
+    app.use("/api", express.json(), async (req, res) => {
       try {
         const path = req.url.replace(/^\/api/, ""); // rimuove /api dal path
         const apiUrl = lambdaUrl + path;
 
         console.log(`${req.method} ${req.url} -> ${apiUrl}`);
+        console.log("Body in ingresso:", req.body);
 
         // Copia headers tranne host
         const { host, ...forwardHeaders } = req.headers;
 
-        const apiResponse = await fetch(apiUrl, {
+            // Prepara il body solo per metodi che lo usano
+        const fetchOptions = {
           method: req.method,
           headers: forwardHeaders
-        });
+        };
 
-        const data = await apiResponse.json();
-        res.status(apiResponse.status).json(data);
+        if (req.method !== "GET" && req.body) {
+          fetchOptions.body = JSON.stringify(req.body);
+        }
+
+        const apiResponse = await fetch(apiUrl, fetchOptions);
+
+        // Log risposta raw per debug
+        const text = await apiResponse.text();
+        console.log("Risposta API:", text);
+
+        // Tenta di fare JSON
+        try {
+          res.status(apiResponse.status).json(JSON.parse(text));
+        } catch {
+          res.status(apiResponse.status).send(text);
+        }
+
+        // const apiResponse = await fetch(apiUrl, {
+        //   method: req.method,
+        //   headers: forwardHeaders
+        // });
+
+        // const data = await apiResponse.json();
+        // res.status(apiResponse.status).json(data);
 
       } catch (err) {
         console.error(err);

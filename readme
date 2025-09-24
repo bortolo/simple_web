@@ -29,5 +29,5 @@ PROB&DET (ipotizzando backend attivo e funzionante)
         tail -f /proxy.log
         sudo tail -f /var/log/httpd/proxy_access.log
 
-6) Per vedere i log degli script legati al deployment
+6) Per vedere i log degli script legati al deployment (se hai fatto tanto deploy usa ls -lt per mettere in ordine le cartelle)
         tail -f /opt/codedeploy-agent/deployment-root/<ID-code-deploy>/<ID-deploy>/logs/scripts.log
