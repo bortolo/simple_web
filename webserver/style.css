@@ -1,5 +1,23 @@
 /* styles.css */
 
+/* Imposta il font per tutta la pagina */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px; /* spazio interno generale */
+  background-color: #ffffff; /* sfondo bianco */
+  color: #333; /* colore testo leggibile */
+}
+
+h2 {
+  text-align: center;             /* centra il testo */
+  background-color: #f0f0f0;      /* grigio chiaro */
+  padding: 10px 15px;             /* spazio interno */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* ombra verso il basso */
+  border-radius: 5px;             /* angoli leggermente arrotondati */
+  margin-bottom: 20px;            /* distanza dal contenuto sottostante */
+}
+
 /* Nota: ho aggiunto la classe form-table così lo stile vale solo per queste tabelle, e non per tutte quelle della pagina. */
 table.form-table {
   border-collapse: collapse;
@@ -22,4 +40,15 @@ table.form-table input {
   width: 100%;
   box-sizing: border-box; /* evita che l’input esca dalla cella */
   padding: 4px;
+}
+
+.button-group {
+  display: flex;   /* allinea i bottoni in fila */
+  gap: 10px;       /* spazio tra i bottoni */
+}
+
+.button-group button {
+  flex: 1;         /* ciascun bottone prende lo stesso spazio */
+  padding: 10px;
+  font-size: 16px;
 }
