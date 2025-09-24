@@ -1,0 +1,25 @@
+/* styles.css */
+
+/* Nota: ho aggiunto la classe form-table così lo stile vale solo per queste tabelle, e non per tutte quelle della pagina. */
+table.form-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed; /* forza allineamento colonne */
+}
+
+table.form-table th,
+table.form-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+table.form-table th {
+  background-color: #f9f9f9;
+}
+
+table.form-table input {
+  width: 100%;
+  box-sizing: border-box; /* evita che l’input esca dalla cella */
+  padding: 4px;
+}
