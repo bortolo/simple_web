@@ -20,6 +20,20 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
   e.preventDefault();
 
   const formData = new FormData(e.target);
+
+  // Controllo se ci sono campi vuoti
+  let empty = false;
+  formData.forEach((value, key) => {
+    if (value.trim() === "") {
+      empty = true;
+    }
+  });
+
+  if (empty) {
+    alert("Per favore, compila tutti i campi del form prima di inviare.");
+    return; // esce dalla funzione, non fa fetch
+  }
+
   const data = {};
   formData.forEach((value, key) => {
     data[key] = Number(value); // converto in numero
@@ -41,7 +55,7 @@ document.getElementById("dataForm").addEventListener("submit", async function (e
     const figData = await response.json();
 
     // mostro anche un messaggio testuale
-    document.getElementById("result").innerText = "✅ Dati ricevuti, creo grafico...";
+    document.getElementById("result").innerText = "✅ Dati ricevuti, creo grafico e calcolo risultati...";
 
     // plotto con Plotly
     Plotly.newPlot("grafico_1", figData.figA.data, figData.figA.layout);
