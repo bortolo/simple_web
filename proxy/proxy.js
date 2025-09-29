@@ -26,7 +26,7 @@ async function getRestApiId(apiName) {
 // Funzione per costruire URL completo
 async function getLambdaUrl() {
   const apiId = await getRestApiId("my_private_api");
-  const stage = "prod";
+  const stage = "test";
   const region = "eu-central-1";
   return `https://${apiId}.execute-api.${region}.amazonaws.com/${stage}`;
 }

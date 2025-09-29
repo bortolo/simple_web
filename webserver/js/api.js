@@ -92,3 +92,18 @@ console.log(action)
     document.getElementById("result").innerText = "❌ Errore: " + err.message;
   }
 });
+
+
+
+// Funzione per caricare il pannello campi db salvati
+  async function fetchList() {
+    listEl.innerHTML = "Caricamento...";
+    try {
+      const r = await fetch("/api/scenarios");
+      if (!r.ok) throw new Error(await r.text());
+      const j = await r.json();
+      renderList(j.items || []);
+    } catch (e) {
+      listEl.innerHTML = "Errore: " + e.message;
+    }
+  }

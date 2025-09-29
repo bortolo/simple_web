@@ -11,3 +11,28 @@
     `;
     tbody.appendChild(tr);
   }
+
+  const listEl = document.getElementById("list");
+  
+  function renderList(items) {
+    if (!items.length) { listEl.innerHTML = "<i>nessuno scenario</i>"; return; }
+    listEl.innerHTML = "";
+    items.forEach(it => {
+      const row = document.createElement("div");
+      row.className = "scenario-row";
+      row.innerHTML = `<div>
+          <strong>${it.scenarioid}</strong><br/>
+          v: ${it.version} — wacc:${it.wacc ?? "-"}
+        </div>`;
+      listEl.appendChild(row);
+    });
+
+    // attach click
+    Array.from(listEl.querySelectorAll("button")).forEach(b=>{
+      b.addEventListener("click", async (ev)=>{
+        const id = ev.target.dataset.id;
+        const ver = ev.target.dataset.ver;
+        //await loadScenario(id, ver);
+      });
+    });
+}
