@@ -23,7 +23,10 @@
       row.innerHTML = `<div>
           <strong>${it.scenarioid}</strong><br/>
           name: ${it.name} — wacc:${it.wacc} - pgr:${it.pgr} - Adv. cashflow:${it.cf_adv}
-        </div>`;
+        </div>
+        <div>
+        <button class="button-group" data-id="${it.scenarioid}" data-ver="${it.version}">Carica</button>
+      </div>`;
       listEl.appendChild(row);
     });
 
@@ -36,3 +39,33 @@
       });
     });
 }
+
+// Da aggiornare anche la api di get item per selezione di un singolo componente
+// async function loadScenario(scenarioid, version) {
+//   try {
+//     const r = await fetch(`/api/scenarios/${encodeURIComponent(scenarioid)}/${encodeURIComponent(version)}`);
+//     if (!r.ok) {
+//       alert("Errore caricamento: " + await r.text());
+//       return;
+//     }
+//     const j = await r.json();
+//     const item = j.item;
+//     populateForm(item);
+//   } catch (e) {
+//     alert("Errore: "+e.message);
+//   }
+// }
+
+
+// function populateForm(item) {
+//   // years
+//   for (let i=1;i<=5;i++){
+//     const y = item.years && item.years[String(i)] ? item.years[String(i)] : {};
+//     document.getElementById(`rev_${i}`).value = y.rev ?? "";
+//     document.getElementById(`ebitda_${i}`).value = y.ebitda ?? "";
+//     document.getElementById(`cpx_${i}`).value = y.cpx ?? "";
+//   }
+//   document.getElementById("wacc").value = item.wacc ?? "";
+//   document.getElementById("pgr").value = item.pgr ?? "";
+//   document.getElementById("cf_adv").value = item.cf_adv ?? "";
+// }
