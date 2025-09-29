@@ -13,7 +13,7 @@
   }
 
   const listEl = document.getElementById("list");
-  
+
   function renderList(items) {
     if (!items.length) { listEl.innerHTML = "<i>nessuno scenario</i>"; return; }
     listEl.innerHTML = "";
@@ -22,7 +22,7 @@
       row.className = "scenario-row";
       row.innerHTML = `<div>
           <strong>${it.scenarioid}</strong><br/>
-          v: ${it.version} — wacc:${it.wacc ?? "-"}
+          v: ${it.version} — wacc:${it.wacc} - pgr:${it.pgr} - Adv. cashflow:${it.cf_adv}
         </div>`;
       listEl.appendChild(row);
     });
