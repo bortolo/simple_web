@@ -93,7 +93,9 @@ console.log(action)
   }
 });
 
-
+  window.addEventListener("DOMContentLoaded", () => {
+    fetchList();
+  });
 
 // Funzione per caricare il pannello campi db salvati
   async function fetchList() {
