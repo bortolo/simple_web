@@ -24,9 +24,7 @@
           <strong>${it.scenarioid}</strong><br/>
           name: ${it.name} — wacc:${it.wacc} - pgr:${it.pgr} - Adv. cashflow:${it.cf_adv}
         </div>
-        <div>
-        <button class="button-group" data-id="${it.scenarioid}" data-ver="${it.version}">Carica</button>
-      </div>`;
+        <button class="button-group" data-id="${it.scenarioid}" data-ver="${it.version}">Carica</button>`;
       listEl.appendChild(row);
     });
 

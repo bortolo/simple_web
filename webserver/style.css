@@ -117,3 +117,23 @@ table.form-table input {
   display: inline-block; /* fa rispettare padding anche se inline */
   font-weight: 500;     /* opzionale: un po' più bold */
 }
+
+
+
+.scenario-row {
+  display: flex;            /* rende i figli in orizzontale */
+  justify-content: space-between; /* spinge il bottone a destra */
+  align-items: center;      /* allinea verticalmente il testo e il bottone */
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.scenario-row .button-group {
+  /* opzionale: dimensioni bottone più uniformi */
+  padding: 4px 8px;
+  cursor: pointer;
+  border: 1px solid #007bff;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+}
