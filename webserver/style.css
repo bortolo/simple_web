@@ -109,3 +109,11 @@ table.form-table input {
   font-weight: bold;
   font-size: 16px;
 }
+
+
+.scenario-label {
+  font-size: 1.2rem;   /* aumenta un po' il font */
+  padding: 8px;        /* padding intorno al testo */
+  display: inline-block; /* fa rispettare padding anche se inline */
+  font-weight: 500;     /* opzionale: un po' più bold */
+}
