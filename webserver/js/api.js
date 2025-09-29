@@ -61,7 +61,7 @@ console.log(action)
       const result = await response.json();
 
       // mostro anche un messaggio testuale
-      document.getElementById("result").innerText = "✅ Risultato save: " + JSON.stringify(result.message);
+      document.getElementById("result").innerText = "✅ Risultato save: " + JSON.stringify(result.message) + "id: "+ JSON.stringify(result.scenarioid);
 
     } else if (action === "graph"){
 
