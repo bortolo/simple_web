@@ -22,7 +22,7 @@
       row.className = "scenario-row";
       row.innerHTML = `<div>
           <strong>${it.scenarioid}</strong><br/>
-          v: ${it.version} — wacc:${it.wacc} - pgr:${it.pgr} - Adv. cashflow:${it.cf_adv}
+          name: ${it.name} — wacc:${it.wacc} - pgr:${it.pgr} - Adv. cashflow:${it.cf_adv}
         </div>`;
       listEl.appendChild(row);
     });
